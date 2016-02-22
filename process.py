@@ -14,6 +14,11 @@ import urllib2
 import urllib
 import cv2
 import numpy as np
+try:
+	import Image
+except ImportError:
+	from PIL import Image
+import pytesseract
 
 from AbbyyOnlineSdk import *
 
@@ -64,7 +69,10 @@ if __name__=="__main__":
 	cleanedImage = np.zeros((height,width,3), np.uint8)
 	cv2.fastNlMeansDenoising(sourceImage, cleanedImage)
 	cv2.imwrite(dst, cleanedImage)
-
+	img = Image.open('badgeSammy.jpg')
+	img.load()
+	# i = pytesseract.image_to_string(img)
+	# print(i)
 	# 2 - Extraction de l'image
 	# processor = AbbyyOnlineSdk()
 
